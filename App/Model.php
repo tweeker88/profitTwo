@@ -9,13 +9,13 @@ abstract class Model
 
     public $id;
 
-    public static function findAll($order = null)
+    public static function findAll($assoc = false)
     {
         $db = new Db();
 
         $sql = 'SELECT * FROM ' . static::TABLE;
 
-        $sql .= isset($order) ? ' ORDER BY id ASC   ' : '';
+        $sql .= ($assoc) ? ' ORDER BY id DESC ' : '';
 
         return $db->query(
             $sql,
