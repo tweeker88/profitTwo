@@ -7,13 +7,12 @@ class Db
 
     protected $dbh;
 
-    public function __construct()
+    public function __construct(Config $config)
     {
-        $config = (include __DIR__ . '/../config.php')['db'];
         $this->dbh = new \PDO(
-            'mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'],
-            $config['user'],
-            $config['password']
+            'mysql:host=' . $config::$DbHost . ';dbname=' . $config::$DbName,
+            $config::$DbUser,
+            $config::$DbPass
         );
     }
 
@@ -24,16 +23,16 @@ class Db
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
-    public function execute($query, $params = [])
+    public function execute($query, $data = [])
     {
         $stmt = $this->dbh->prepare($query);
 
-        foreach ($params as $key => $param) {
-            $stmt->bindValue(':' . $key, $param);
-        }
+        return $stmt->execute($data);
+    }
 
-        return $stmt->execute();
-
+    public function getLastId()
+    {
+        return $this->dbh->lastInsertId();
     }
 
 }
