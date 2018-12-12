@@ -63,6 +63,8 @@ abstract class Model
         $db->execute($sql, $data);
 
         $this->id = $db->getLastId();
+
+        return true;
     }
 
     public function update()
@@ -91,10 +93,7 @@ abstract class Model
     {
         $article = static::findById($this->id);
 
-        if (isset($article)) {
-            $this->update();
-        } else {
-            $this->insert();
-        }
+        return isset($article) ? $this->update() : $this->insert();
+
     }
 }
