@@ -2,14 +2,26 @@
 
 namespace App;
 
+/**
+ * Class Model
+ * @package App
+ */
 abstract class Model
 {
 
+    /**
+     * @var string TABLE
+     * @var int $id
+     */
     public const TABLE = '';
 
     public $id;
 
-    public static function findAll($assoc = false)
+    /**
+     * @param bool $assoc
+     * @return array
+     */
+    public static function findAll(bool $assoc = false)
     {
         $db = new Db(Config::getInstance());
 
@@ -25,7 +37,7 @@ abstract class Model
     }
 
 
-    public static function findById($id)
+    public static function findById(int $id)
     {
         $db = new Db(Config::getInstance());
         $sql = 'SELECT * FROM ' . static::TABLE . ' WHERE id=:id';

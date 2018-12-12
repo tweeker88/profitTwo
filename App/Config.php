@@ -2,7 +2,10 @@
 
 namespace App;
 
-
+/**
+ * Class Config
+ * @package App
+ */
 class Config
 {
     private static $_instance;

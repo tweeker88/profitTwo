@@ -2,9 +2,15 @@
 
 namespace App;
 
+/**
+ * Class Db
+ * @package App
+ */
 class Db
 {
-
+    /**
+     * @var \PDO $dbh
+     */
     protected $dbh;
 
     public function __construct(Config $config)
@@ -16,14 +22,14 @@ class Db
         );
     }
 
-    public function query($sql, $data = [], $class)
+    public function query(string $sql,array $data = [],string $class)
     {
         $sth = $this->dbh->prepare($sql);
         $sth->execute($data);
         return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
     }
 
-    public function execute($query, $data = [])
+    public function execute(string $query,array $data = [])
     {
         $stmt = $this->dbh->prepare($query);
 
