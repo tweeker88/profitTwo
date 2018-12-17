@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var App\View $this
+ */
+?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -8,12 +13,7 @@
     <title>Новости</title>
 </head>
 <body>
-<?php foreach ($this->news as $article): ?>
-    <article>
-        <h2><a href="/article?id=<?php echo $article->id;?>"><?php echo $article->title;?></a></h2>
-        <p><?php echo $article->content; ?></p>
-        <p>Автор:<?php echo $article->author->name; ?></p>
-    </article>
-<?php endforeach; ?>
+<h1> Ошибка 404</h1>
+<p>Такой страницы нет</p>
 </body>
 </html>

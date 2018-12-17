@@ -17,7 +17,7 @@ class Config
 
     protected function __construct()
     {
-        $config = (include __DIR__ . '/../config.php')['db'];
+        $config = (include __DIR__ . '/config.php')['db'];
 
         self::$DbHost = $config['host'];
         self::$DbName = $config['dbname'];
